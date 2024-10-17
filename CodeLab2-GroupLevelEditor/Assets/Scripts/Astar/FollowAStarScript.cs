@@ -49,6 +49,7 @@ public class FollowAStarScript : MonoBehaviour {
 				currentStep++;
 
 				if(currentStep >= path.steps){
+					SingletonScript.instance.princessPlaces.Enqueue(gameObject.name);
 					currentStep = 0;
 					move = false;
 					Debug.Log(path.pathName + " got to the goal in: " + (Time.realtimeSinceStartup - startTime));

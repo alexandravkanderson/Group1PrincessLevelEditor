@@ -27,11 +27,12 @@ public class SingletonScript : MonoBehaviour
     {
         if (princessPlaces != null)
         {
-            if (princessPlaces.Count == 3)
+            if (princessPlaces.Count == 4)
             {
                 scoreBoard.text = "1st: " + princessPlaces.Dequeue() + "\n" +
                                   "2nd: " + princessPlaces.Dequeue()+ "\n" +
-                                  "3rd: " + princessPlaces.Dequeue() + "\n";
+                                  "3nd: " + princessPlaces.Dequeue()+ "\n" +
+                                  "4rd: " + princessPlaces.Dequeue() + "\n";
             }
         }
     }

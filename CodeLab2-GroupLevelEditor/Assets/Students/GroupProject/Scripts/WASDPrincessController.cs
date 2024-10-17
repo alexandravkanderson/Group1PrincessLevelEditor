@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 public class WASDPrincessController : MonoBehaviour
@@ -15,7 +16,7 @@ public class WASDPrincessController : MonoBehaviour
     private float lerpStartTime; // Time when lerping started
     private float lerpThreshold = 0.01f; // Threshold to consider lerp complete
 
-    // You can adjust these multipliers to make the difference more noticeable
+    // make the difference more noticeable
     public float speedMultiplier = 3f;  // Multiplier to exaggerate speed differences
     public float lerpDurationMultiplier = 2f;  // Multiplier to exaggerate lerp duration differences
 
@@ -31,6 +32,13 @@ public class WASDPrincessController : MonoBehaviour
 
     void Update()
     {
+        
+        // Continuously check if the player has reached the goal position
+        if (HasReachedGoal())
+        {
+            MarkPlayerAsFinished();
+        }
+        
         // If currently lerping, allow buffered input but do not move immediately
         if (isLerping)
         {
@@ -116,7 +124,7 @@ public class WASDPrincessController : MonoBehaviour
 
         return new Vector3(offsetX + gridPosition.x * grid.spacing, 
                            offsetY - gridPosition.y * grid.spacing, 
-                           0); // Assuming 2D game, z = 0
+                           0); 
     }
 
     private float CalculateLerpDuration(Vector2 position)
@@ -126,7 +134,7 @@ public class WASDPrincessController : MonoBehaviour
         float cost = grid.GetMovementCost(currentQuad);
 
         // Exaggerate lerp duration based on cost (e.g., higher cost = much longer duration)
-        return Mathf.Clamp(cost * lerpDurationMultiplier, 0.1f, 500f); // Larger upper bound for more noticeable effect
+        return Mathf.Clamp(cost * lerpDurationMultiplier, 0.1f, 500f); 
     }
 
     private float GetSpeedBasedOnMaterial(Vector2 position)
@@ -138,4 +146,20 @@ public class WASDPrincessController : MonoBehaviour
         // Exaggerate speed difference based on cost (lower cost = much higher speed)
         return baseSpeed * (1f / cost) * speedMultiplier; // Apply speed multiplier for more noticeable difference
     }
+
+    // Check if the player's current grid position matches the goal position
+    private bool HasReachedGoal()
+    {
+        Vector2 goalPosition = new Vector2(grid.goal.x, grid.goal.y);
+        return currentGridPosition == goalPosition;
+    }
+    
+    // Mark the player into the queue once they reach the goal
+    private void MarkPlayerAsFinished()
+    {
+        Debug.Log("Reached goal!");
+        SingletonScript.instance.princessPlaces.Enqueue(gameObject.name);
+        gameObject.SetActive(false); // Disable the player object after reaching the goal
+    }
+    
 }

@@ -1402,7 +1402,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a740a6a51bf2b49dd87607c40af1caf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upperBound: 0.6
+  upperBound: 0.3
   lowerBound: 0.2
 --- !u!1 &940018223341544871
 GameObject:
@@ -2038,7 +2038,7 @@ GameObject:
   - component: {fileID: 7945025229516093238}
   - component: {fileID: 7945025229516093239}
   m_Layer: 0
-  m_Name: Smartest Princess
+  m_Name: Smart Princess
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2290,7 +2290,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a740a6a51bf2b49dd87607c40af1caf7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  upperBound: 0.8
+  upperBound: 0.4
   lowerBound: 0.2
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
